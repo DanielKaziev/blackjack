@@ -1,0 +1,21 @@
+html{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 23px;
+}
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.box div{
+    display: inline-block;
+}
+#start{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 15px;
+}
