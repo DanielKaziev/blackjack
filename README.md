@@ -1,9 +1,9 @@
 # Blackjack Card Game
 
-### Описание
-Классический Blackjack без дополнительный правил, вариаций или дополнений. Победа тому кто набрал набор карт ближе к 21, то и выигрывает.
+### Description
+Classic Blackjack without additional rules, variations or additions. The victory of the one who scored a set of cards closer to 21 wins.
 
-Игра происходит по принципу «человек против робота»
+The game takes place on the principle of "human versus robot"
 
-### Технологии
+### Technology
 HTML, CSS, JS
