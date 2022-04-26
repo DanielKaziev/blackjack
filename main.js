@@ -1,43 +1,58 @@
-function Main(){
-    var cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, "tuz"];
-    var sharpie = [];
+function start(){
+    var cards = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11];
+    var dealer = [];
     var player = [];
+    // раздача карт для начала игры
     for (let i = 0; i < 2; i++) { 
-        var num = Math.floor(Math.random() * cards.length);
-        sharpie.push(cards[num]);
+        let num = Math.floor(Math.random() * cards.length);
+        dealer.push(cards[num]);
         cards.splice(num, 1);
     }
-    for (let i = 0; i < sharpie.length; i++) {
-        if (sharpie[i] === "tuz") {
-            sharpie.splice(i, 1, 11);
-        }
-    }
     for (let i = 0; i < 2; i++) { 
-        var num = Math.floor(Math.random() * cards.length);
+        let num = Math.floor(Math.random() * cards.length);
         player.push(cards[num]);
         cards.splice(num, 1);
     }
-    for (let i = 0; i < player.length; i++) {
-        if (player[i] === "tuz") {
-            player.splice(i, 1, 11);
+    // рендер кнопок
+    document.getElementById("take").style.display = "inline-block";
+    document.getElementById("stand").style.display = "inline-block";
+    document.getElementById("start").style.display = "none";
+    
+    // добор карт
+    take.onclick = function take(){
+        let num = Math.floor(Math.random() * cards.length);
+        player.push(cards[num]);
+        cards.splice(num, 1);
+        // Если у  дилера менише 17 очков, то добирает.
+        if (dealer.reduce((a,b)=>a+b) < 17){
+            let num = Math.floor(Math.random() * cards.length);
+            dealer.push(cards[num]);
+            cards.splice(num, 1);
         }
+        document.getElementById("dealer").innerHTML = dealer.reduce((a,b)=>a+b);
+        document.getElementById("player").innerHTML = player.reduce((a,b)=>a+b);
     }
-
-    console.log(sharpie);
+    // оставит карты
+    stand.onclick = function take(){
+        // Если у  дилера менише 17 очков, то добирает.
+        while(dealer.reduce((a,b)=>a+b) < 17){
+            let num = Math.floor(Math.random() * cards.length);
+            dealer.push(cards[num]);
+            cards.splice(num, 1);
+            console.log(dealer);
+        }
+        document.getElementById("dealer").innerHTML = dealer.reduce((a,b)=>a+b);
+        document.getElementById("player").innerHTML = player.reduce((a,b)=>a+b);
+    }
+    
+    function checkWhoWon(){
+        let dealer_op = dealer.reduce((a,b)=>a+b);
+        let player_op = player.reduce((a,b)=>a+b);
+    }
     console.log(player);
+    console.log(dealer);
     console.log(cards);
-    // for (let i = 0; i < 2; i++) { 
-    //     var num = Math.floor(Math.random() * cards.length);
-    //     player.push(cards[num]);
-    //     delete cards[num];
-    // }
-    // if (num == cards.length && sharpie.reduce((a,b)=>a+b) <= 21){
-    //     sharpie.push(11);
-    // } else if (num == cards.length && sharpie.reduce((a,b)=>a+b) >= 21){
-    //     sharpie.push(1);
-    // } else {
-    //     sharpie.push(cards[num]);
-    // }
-    document.getElementById("sharpie").innerHTML = sharpie.reduce((a,b)=>a+b);
+
+    document.getElementById("dealer").innerHTML = dealer.reduce((a,b)=>a+b);
     document.getElementById("player").innerHTML = player.reduce((a,b)=>a+b);
 }
