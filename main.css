@@ -29,3 +29,9 @@ button{
 .buttons{
     display: block;
 }
+#text{
+    display: none;
+}
+#reset{
+    display: none;
+}
